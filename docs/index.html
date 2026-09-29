@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لیگ ساختمان داده</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">جدول رتبه‌بندی</div>
+    <h1 id="title">ساختمان داده</h1>
+    <div class="meta">
+      <span>آخرین بروزرسانی: <b id="updated" class="num">—</b></span>
+      <button class="refresh" id="refresh" type="button">↻ بروزرسانی</button>
+      <a class="guide-link" href="#guide">راهنما و نحوه نمره‌دهی</a>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="بخش‌های نمره"></nav>
+  <div class="find"><input id="me" type="search" placeholder="اسمت را بنویس تا ردیفت پیدا شود" autocomplete="off"></div>
+  <div id="board"></div>
+
+  <div class="legend">
+    <span><b class="up">▲</b> صعود نسبت به قبل</span>
+    <span><b class="down">▼</b> سقوط</span>
+    <span><b class="flat">—</b> بدون تغییر</span>
+    <span><i class="dot d-hi"></i><i class="dot d-mid"></i><i class="dot d-lo"></i> جایگاه در ۵ بخش اخیر (بالا، میانه، پایین کلاس)</span>
+  </div>
+
+  <section class="guide" id="guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">راهنما</h2>
+
+    <div class="guide-block">
+      <h3>نمره لیگ</h3>
+      <p>نمره‌ی هر دانشجو بر اساس رتبه‌ی او در جدول لیگ به شکل زیر محاسبه می‌شود:</p>
+      <div class="table-scroll"><table class="points" id="points"></table></div>
+    </div>
+
+    <div class="guide-block">
+      <h3>چک‌پوینت‌ها</h3>
+      <div class="checkpoints" id="checkpoints"></div>
+    </div>
+
+    <div class="guide-block">
+      <h3>خواندن جدول</h3>
+      <ul>
+        <li>«مجموع» جمع نمره همه تمرین‌ها و پروژه‌هاست. هر تب دیگر رتبه‌بندی همان تمرین را نشان می‌دهد.</li>
+        <li>تغییر رتبه در «مجموع» نسبت به جدول قبل از آخرین تمرین است و در هر تمرین نسبت به تمرین قبلی.</li>
+        <li>روی اسم هر نفر بزنید تا نمره و رتبه‌اش در همه تمرین‌ها باز شود.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
