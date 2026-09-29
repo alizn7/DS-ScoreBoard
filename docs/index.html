@@ -8,15 +8,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="eyebrow">جدول رتبه‌بندی</div>
+    <div class="topbar">
+      <div class="eyebrow">جدول رتبه‌بندی</div>
+      <button class="theme-toggle" id="theme" type="button" aria-label="تغییر حالت روشن و تاریک" title="حالت روشن / تاریک">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
     <h1 id="title">ساختمان داده</h1>
     <div class="meta">
       <span>آخرین بروزرسانی: <b id="updated" class="num">—</b></span>
-      <button class="refresh" id="refresh" type="button">↻ بروزرسانی</button>
       <a class="guide-link" href="#guide">راهنما و نحوه نمره‌دهی</a>
     </div>
   </header>
@@ -29,7 +35,7 @@
     <span><b class="up">▲</b> صعود نسبت به قبل</span>
     <span><b class="down">▼</b> سقوط</span>
     <span><b class="flat">—</b> بدون تغییر</span>
-    <span><i class="dot d-hi"></i><i class="dot d-mid"></i><i class="dot d-lo"></i> جایگاه در ۵ بخش اخیر (بالا، میانه، پایین کلاس)</span>
+    <span class="form-key">فرم ۵ تمرین اخیر: <em><i class="dot d-hi"></i> بالای کلاس</em><em><i class="dot d-mid"></i> میانه</em><em><i class="dot d-lo"></i> پایین کلاس</em></span>
   </div>
 
   <section class="guide" id="guide" aria-labelledby="guide-title">

@@ -2,6 +2,7 @@ window.LEAGUE_CONFIG = {
   course: "ساختمان داده",
   year: "۱۴۰۵",
   topSize: 12,
+  repo: "alizn7/DS-ScoreBoard",
 
   leaguePoints: [
     {ranks: [1, 2], medal: "🥇", percent: 100, points: 3},

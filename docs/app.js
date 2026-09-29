@@ -178,25 +178,48 @@ function renderGuide(){
   }).join("");
 }
 
+const fmtDate = d => new Date(d).toLocaleString("fa-IR", {dateStyle: "long", timeStyle: "short", timeZone: "Asia/Tehran"});
+
+// Last commit that touched scores.csv; falls back to the Pages Last-Modified header.
+async function showUpdated(fallback){
+  const el = document.getElementById("updated");
+  try {
+    const res = await fetch(`https://api.github.com/repos/${CFG.repo}/commits?path=docs/scores.csv&per_page=1`);
+    if (!res.ok) throw new Error(res.status);
+    const [c] = await res.json();
+    el.textContent = fmtDate(c.commit.committer.date);
+  } catch (err) {
+    el.textContent = fallback ? fmtDate(fallback) : "—";
+  }
+}
+
 async function load(){
   const el = document.getElementById("board");
+  let res;
   try {
-    const res = await fetch("scores.csv?t=" + Date.now());
+    res = await fetch("scores.csv?t=" + Date.now());
     if (!res.ok) throw new Error(res.status);
     data = buildData(parseCSV(await res.text()));
-    const lm = res.headers.get("last-modified");
-    document.getElementById("updated").textContent = lm
-      ? new Date(lm).toLocaleString("fa-IR", {dateStyle: "long", timeStyle: "short", timeZone: "Asia/Tehran"})
-      : "—";
   } catch (err) {
     el.innerHTML = '<div class="empty">فایل نمره‌ها خوانده نشد. چند دقیقه دیگر دوباره امتحان کنید.</div>';
     return;
   }
+  showUpdated(res.headers.get("last-modified"));
   formCache = null;
   const h = location.hash.slice(1);
   if (h && (h === "total" || data.items.some(it => it.slug === h))) active = h;
   renderBoard();
 }
+
+function currentTheme(){
+  const t = document.documentElement.getAttribute("data-theme");
+  return t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+}
+document.getElementById("theme").addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem("theme", next); } catch (err) {}
+});
 
 document.getElementById("title").innerHTML = `${esc(CFG.course)} <span class="year">${esc(CFG.year)}</span>`;
 document.title = "لیگ " + CFG.course;
@@ -220,6 +243,5 @@ document.getElementById("me").addEventListener("input", () => {
   document.querySelector(".row.me")?.scrollIntoView({block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
 
-document.getElementById("refresh").addEventListener("click", load);
 renderGuide();
 load();
