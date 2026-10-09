@@ -59,7 +59,8 @@ nav.tabs::-webkit-scrollbar{display:none}
 .find input::placeholder{color:var(--muted)}
 
 .top12{background:var(--top);color:var(--top-ink);border-radius:14px;padding:16px 10px 8px;border:2px solid var(--top-border)}
-.top12-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-inline:8px;margin-bottom:6px}
+/* end padding = row padding + change column + gap, so the label sits over the score column */
+.top12-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-inline:8px 76px;margin-bottom:6px}
 .top12-head h2{font-weight:800;font-size:18px;margin:0;color:var(--gold)}
 .top12-head span{font-size:12px;color:var(--top-muted)}
 
@@ -86,7 +87,7 @@ nav.tabs::-webkit-scrollbar{display:none}
 .rest .row:hover{background:var(--surface-2)}
 .rest .row + .row{border-top:1px solid var(--line)}
 
-.form{display:inline-flex;gap:3px;direction:ltr}
+.form{display:inline-flex;align-self:flex-start;gap:3px;direction:ltr}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
 .d-hi{background:var(--up)} .d-mid{background:var(--flat)} .d-lo{background:var(--down)} .d-na{box-shadow:inset 0 0 0 1.5px var(--flat)}
 .top12 .d-hi{background:var(--top-up)} .top12 .d-lo{background:var(--top-down)} .top12 .d-mid{background:var(--top-flat)} .top12 .d-na{box-shadow:inset 0 0 0 1.5px var(--top-flat)}
@@ -107,6 +108,7 @@ nav.tabs::-webkit-scrollbar{display:none}
 
 @media (max-width:420px){
   .row{grid-template-columns:34px minmax(0,1fr) auto 46px;gap:8px;padding-inline:4px}
+  .top12-head{padding-inline-end:58px}
   .score{font-size:16px}
 }
 @media (prefers-reduced-motion:no-preference){ .row{transition:background .15s} }
